@@ -16,13 +16,12 @@ body{
   color:#5a0033;
 }
 
-/* ===== PARTÍCULAS ===== */
+/* PARTICULAS */
 .particles{position:fixed;inset:0;pointer-events:none;z-index:0}
 .particle{
   position:absolute;
   bottom:-50px;
   font-size:18px;
-  color:#ff7eb3;
   animation:floatUp linear infinite;
   opacity:.8;
 }
@@ -31,7 +30,7 @@ body{
   to{transform:translateY(-120vh);opacity:1}
 }
 
-/* ===== SCREENS ===== */
+/* SCREENS */
 .screen{
   position:absolute;
   inset:0;
@@ -41,9 +40,8 @@ body{
   justify-content:center;
   opacity:0;
   pointer-events:none;
-  transition:opacity .6s ease,transform .6s ease;
+  transition:.6s ease;
   transform:scale(.96);
-  z-index:1;
   padding:20px;
   text-align:center;
 }
@@ -53,7 +51,7 @@ body{
   transform:scale(1);
 }
 
-/* ===== BOTÓN PRINCIPAL ===== */
+/* BOTONES */
 .main-btn{
   width:220px;
   cursor:pointer;
@@ -89,14 +87,13 @@ input{
   text-align:center;
 }
 
-/* ===== CARRUSEL ===== */
+/* CARRUSEL */
 .carousel{
   width:100%;
   max-width:900px;
   height:380px;
   overflow:hidden;
   margin-top:25px;
-  position:relative;
 }
 .carousel-track{
   display:flex;
@@ -114,7 +111,6 @@ input{
 }
 .carousel img:hover{transform:scale(1.02)}
 
-/* ===== MODAL ===== */
 .modal-overlay{
   display:none;
   position:fixed;
@@ -123,7 +119,6 @@ input{
   z-index:100;
   align-items:center;
   justify-content:center;
-  backdrop-filter:blur(5px);
 }
 .modal-content{
   background:white;
@@ -131,11 +126,8 @@ input{
   border-radius:30px;
   text-align:center;
   max-width:85%;
-  box-shadow:0 15px 40px rgba(0,0,0,0.2);
-  border:4px solid #ffb6d9;
 }
 
-/* ===== FINAL ===== */
 .final-name{
   font-size:36px;
   font-weight:bold;
@@ -144,26 +136,17 @@ input{
   color:#d32f2f;
 }
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE */
 @media(max-width:768px){
-
   body{overflow:auto}
-
   h1{font-size:26px}
   h2{font-size:22px}
-
   .main-btn{width:160px}
-
   .buttons{flex-direction:column;gap:15px}
-
   button,input{width:220px;font-size:16px}
-
   .carousel{height:260px}
   .carousel img{min-width:220px;margin:0 10px}
-
   .final-name{font-size:24px}
-
-  .modal-content{padding:25px}
 }
 </style>
 </head>
@@ -186,25 +169,11 @@ input{
   </div>
 </div>
 
-<div id="noScreen" class="screen">
-  <img style="width:260px;border-radius:20px"
-  src="https://i.pinimg.com/originals/07/2c/88/072c88a8010e52504af050f9388c41f1.gif">
-  <p>¿Segura? 🥺</p>
-  <button onclick="go('noScreen','question')">Volver</button>
-</div>
-
 <div id="contract" class="screen">
   <h2>💌 Cerrar contrato 💌</h2>
   <p>Inserta tu nombre para firmar el compromiso</p>
   <input id="nameInput" placeholder="Tu nombre aquí...">
   <button onclick="closeContract()">Cerrar contrato</button>
-</div>
-
-<div id="contractView" class="screen">
-  <h1 style="font-size:60px">🔒</h1>
-  <h1>CONTRATO CERRADO</h1>
-  <div class="final-name" id="displayContractName"></div>
-  <p>Preparando nuestra historia...</p>
 </div>
 
 <div id="story" class="screen">
@@ -217,6 +186,8 @@ input{
       <img src="https://media.discordapp.net/attachments/960045487371735110/1470540731738226820/image.jpg?ex=698e4e47&is=698cfcc7&hm=da5fb2244df20364c5c5bc76af384c7d0a0fe8e547a71eabff5bedb271d876e6&=&format=webp&width=642&height=856">
       <img src="https://media.discordapp.net/attachments/960045487371735110/1470540732300267570/image.jpg?ex=698e4e47&is=698cfcc7&hm=f04dabd9db4064018675f3984d3468a478a716dd8e259943aa5e3df4d38b3791&=&format=webp&width=642&height=856">
       <img src="https://media.discordapp.net/attachments/960045487371735110/1470540733005037578/image.jpg?ex=698e4e48&is=698cfcc8&hm=9a678498c9991e6f21348d0a0014832ec5c8c10a0d37039d62eb0e9f04be2d8b&=&format=webp&width=642&height=856">
+
+ 
     </div>
   </div>
   <button style="margin-top:20px" onclick="go('story','quiz')">Siguiente</button>
@@ -224,21 +195,12 @@ input{
 
 <div id="quiz" class="screen">
   <h2>¿Cuál es mi foto favorita? 💖</h2>
-  <p>Elige con cuidado...</p>
   <div class="carousel">
     <div class="carousel-track" style="justify-content:center">
-      <img onclick="pick(1)" src="https://media.discordapp.net/attachments/960045487371735110/1470540731738226820/image.jpg?ex=698bab47&is=698a59c7&hm=5b824fbcac6b85efa5826cb9e6dacf3e70250487437779a6a7d86cfc428875a2&=&format=webp&width=642&height=856">
-      <img onclick="pick(2)" src="https://media.discordapp.net/attachments/960045487371735110/1470540732300267570/image.jpg?ex=698bab47&is=698a59c7&hm=f444a6857b6fc96a5f1afcbd67f8aa6a09c52963ee66c14b517e7f817a0f337f&=&format=webp&width=642&height=856">
-      <img onclick="pick(3)" src="https://media.discordapp.net/attachments/960045487371735110/1470540733005037578/image.jpg?ex=698bab48&is=698a59c8&hm=f2d5654e78a3a94381ad0b3e9d23d15587c792e72a4757388596b250f5ed526b&=&format=webp&width=642&height=856">
+      <img onclick="pick(1)" src="https://media.discordapp.net/attachments/960045487371735110/1470540729381027850/image.jpg?ex=698e4e47&is=698cfcc7&hm=9e64cdbb903927ab789333a9b2b9b11e50b9549272c935c819cfc6ac212c2d34&=&format=webp&width=1141&height=856">
+      <img onclick="pick(2)" src="https://media.discordapp.net/attachments/960045487371735110/1470540730144395471/image.jpg?ex=698e4e47&is=698cfcc7&hm=f6fbf79712486fa6d8454256aaf3209485ab71952c4749ce8ee8335f19e9d545&=&format=webp&width=642&height=856">
+      <img onclick="pick(3)" src="https://media.discordapp.net/attachments/960045487371735110/1470540733005037578/image.jpg?ex=698e4e48&is=698cfcc8&hm=9a678498c9991e6f21348d0a0014832ec5c8c10a0d37039d62eb0e9f04be2d8b&=&format=webp&width=642&height=856">
     </div>
-  </div>
-</div>
-
-<div id="modalError" class="modal-overlay">
-  <div class="modal-content">
-    <h2>⚠️ ¡Ups! ⚠️</h2>
-    <p>Te equivocaste...<br><b>Solo te queda 1 vida</b> 💔</p>
-    <button onclick="cerrarError()">Intentar de nuevo</button>
   </div>
 </div>
 
@@ -246,15 +208,13 @@ input{
   <div class="modal-content">
     <h2>¡Adivinaste! 💖</h2>
     <p>Esta es mi foto favorita porque ese día supe que eras tú. ¡Te amo!</p>
-    <button onclick="cerrarMensaje()">Continuar ✨</button>
+    <button onclick="cerrarMensaje()">Continuar</button>
   </div>
 </div>
 
 <div id="finalContract" class="screen">
   <h1>💖 Contrato cerrado 💖</h1>
-  <p>Oficialmente eres mi San Valentín:</p>
   <div class="final-name" id="finalName"></div>
-  <p style="margin-top:20px">¡Te amo! 🌹</p>
 </div>
 
 <script>
@@ -262,22 +222,17 @@ let userName="";
 let i=0;
 const track=document.getElementById("track");
 
-/* Navegación */
 function go(a,b){
   document.querySelectorAll('.screen').forEach(s=>s.classList.remove("active"));
   setTimeout(()=>document.getElementById(b).classList.add("active"),200);
 }
 
-/* Contrato */
 function closeContract(){
   userName=document.getElementById("nameInput").value.trim();
   if(!userName)return alert("¡Escribe tu nombre! 💗");
-  document.getElementById("displayContractName").innerText=userName;
-  go('contract','contractView');
-  setTimeout(()=>go('contractView','story'),2500);
+  go('contract','story');
 }
 
-/* Carrusel automático adaptable */
 setInterval(()=>{
   if(document.getElementById('story').classList.contains('active')){
     const imgWidth=track.children[0].offsetWidth+30;
@@ -286,46 +241,26 @@ setInterval(()=>{
   }
 },3000);
 
-/* Swipe táctil */
-let startX=0;
-track.addEventListener("touchstart",e=>{
-  startX=e.touches[0].clientX;
-});
-track.addEventListener("touchend",e=>{
-  let diff=e.changedTouches[0].clientX-startX;
-  const imgWidth=track.children[0].offsetWidth+30;
-  if(diff>50 && i>0) i--;
-  if(diff<-50 && i<track.children.length-1) i++;
-  track.style.transform=`translateX(${-i*imgWidth}px)`;
-});
-
-/* Quiz */
 function pick(index){
   if(index===3){
     document.getElementById("modalMensaje").style.display="flex";
-  }else{
-    document.getElementById("modalError").style.display="flex";
   }
 }
-function cerrarError(){
-  document.getElementById("modalError").style.display="none";
-}
+
 function cerrarMensaje(){
   document.getElementById("modalMensaje").style.display="none";
   document.getElementById("finalName").innerText=userName;
   go('quiz','finalContract');
 }
 
-/* Partículas optimizadas */
+/* Partículas */
 const p=document.getElementById("particles");
-const count=window.innerWidth<768?20:35;
-for(let i=0;i<count;i++){
+for(let i=0;i<25;i++){
   const d=document.createElement("div");
   d.className="particle";
   d.innerHTML="💗";
   d.style.left=Math.random()*100+"%";
-  d.style.animationDuration=10+Math.random()*8+"s";
-  d.style.animationDelay=Math.random()*5+"s";
+  d.style.animationDuration=8+Math.random()*8+"s";
   p.appendChild(d);
 }
 </script>
