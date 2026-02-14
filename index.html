@@ -92,12 +92,38 @@ input{
   box-shadow:0 25px 40px rgba(255,182,217,.45);
 }
 
-/* QUIZ */
+/* ===== QUIZ OPTIMIZADO MOVIL ===== */
+.quiz{
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  align-items:center;
+  gap:12px;
+  margin-top:20px;
+  width:100%;
+  max-width:900px;
+}
+
 .quiz img{
-  width:260px;
+  width:28%;
+  min-width:110px;
+  max-width:220px;
   border-radius:20px;
   cursor:pointer;
-  margin:10px;
+  transition:.25s;
+  box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.quiz img:active{
+  transform:scale(.95);
+}
+
+/* MOVIL */
+@media(max-width:600px){
+  .quiz img{
+    width:30%;
+    min-width:95px;
+  }
 }
 
 /* MODAL */
@@ -115,40 +141,6 @@ input{
   border-radius:30px;
   color:#5a0033;
 }
-
-/* VACA FINAL */
-.vacaFinal{
-  width:230px;
-  animation:float 2.5s ease-in-out infinite;
-  cursor:pointer;
-}
-
-/* LUCES CIELO */
-.light{
-  position:absolute;
-  top:-40px;
-  font-size:22px;
-  animation:fall linear infinite;
-  opacity:.85;
-}
-@keyframes fall{
-  from{transform:translateY(-10vh)}
-  to{transform:translateY(110vh)}
-}
-
-/* TEXTO REVELACION */
-.reveal{
-  max-width:700px;
-  font-size:20px;
-  line-height:1.7;
-  opacity:0;
-  transform:translateY(25px);
-  animation:revealText 5s forwards;
-}
-@keyframes revealText{
-  to{opacity:1;transform:translateY(0)}
-}
-
 </style>
 </head>
 
@@ -218,6 +210,7 @@ onclick="go('inicio','question')">
 <!-- QUIZ -->
 <div id="quiz" class="screen">
 <h2 id="quizTitle"></h2>
+
 <div class="quiz">
 <img src="imagenes/foto1.jpg" onclick="verificar(1)">
 <img src="imagenes/foto2.jpg" onclick="verificar(2)">
@@ -236,44 +229,42 @@ onclick="go('inicio','question')">
 <h1>💖 CONTRATO CERRADO 💖</h1>
 <h2 id="finalName"></h2>
 
-<img src="imagenes/vaca.png"
-class="vacaFinal"
-onclick="go('final','dios'); crearLuces()">
+<img src="imagenes/vaca.png" class="main-btn"
+onclick="go('final','mensajeDios')">
 
-<p style="margin-top:15px;font-size:20px">
-psss psss ven 👀
+<p style="margin-top:20px;font-size:20px">
+psss psss ven 🐄✨
 </p>
 </div>
 
-<!-- MENSAJE DIOS -->
-<div id="dios" class="screen">
-<div id="lights"></div>
+<!-- MENSAJE FINAL -->
+<div id="mensajeDios" class="screen">
+<h2 style="max-width:700px;line-height:1.7;font-weight:normal">
+Dios está presente en todo momento.  
+Aunque las cosas no siempre estén bien, Él siempre está contigo
+en cada decisión y en cada paso.
 
-<p class="reveal">
-Dios está presente en todo momento.<br><br>
-Aunque las cosas no estén bien,
-Él nunca te abandona.<br><br>
-Está contigo en cada decisión,
-en cada paso y en cada dificultad.<br><br>
+<br><br>
 
-Siempre voy a estar contigo,
-nunca vas a estar sola porque me tienes a mí.
-Tú estás conmigo y yo contigo.<br><br>
+Siempre voy a estar contigo, nunca vas a estar sola porque me tienes a mí.
+Tú estás conmigo y yo contigo.  
+Si podemos con la distancia, podemos con todo.
+Solo confía que todo estará bien.
 
-Si podemos con la distancia,
-podemos con todo.
-Solo confía que todo estará bien,
-mi Dios nos tiene muchas cosas aún por delante.<br><br>
+<br><br>
 
-Así que vamos a seguir para adelante…
-te amo preciosa ❤️✨
-</p>
+Mi Dios nos tiene muchas cosas aún por delante,
+así que vamos a seguir adelante.
 
+<br><br>
+
+❤️ Te amo preciosa ❤️
+</h2>
 </div>
 
 <script>
 
-/* CAMBIO PANTALLAS */
+/* CAMBIAR PANTALLAS */
 function go(a,b){
  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
  setTimeout(()=>document.getElementById(b).classList.add('active'),200);
@@ -302,12 +293,14 @@ setInterval(()=>{
 /* TEXTO QUIZ */
 const textoQuiz="¿Cuál es mi foto favorita? 💖";
 let t=0;
+
 function iniciarTextoQuiz(){
  const el=document.getElementById("quizTitle");
  el.innerHTML="";
  t=0;
  escribir();
 }
+
 function escribir(){
  if(t<textoQuiz.length){
    document.getElementById("quizTitle").innerHTML+=textoQuiz.charAt(t);
@@ -337,20 +330,6 @@ for(let i=0;i<25;i++){
  d.style.left=Math.random()*100+"%";
  d.style.animationDuration=8+Math.random()*8+"s";
  p.appendChild(d);
-}
-
-/* LUCES */
-function crearLuces(){
- const cont=document.getElementById("lights");
- cont.innerHTML="";
- for(let i=0;i<35;i++){
-   const l=document.createElement("div");
-   l.className="light";
-   l.innerHTML="✨";
-   l.style.left=Math.random()*100+"%";
-   l.style.animationDuration=4+Math.random()*5+"s";
-   cont.appendChild(l);
- }
 }
 </script>
 
