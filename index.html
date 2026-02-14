@@ -115,6 +115,40 @@ input{
   border-radius:30px;
   color:#5a0033;
 }
+
+/* VACA FINAL */
+.vacaFinal{
+  width:230px;
+  animation:float 2.5s ease-in-out infinite;
+  cursor:pointer;
+}
+
+/* LUCES CIELO */
+.light{
+  position:absolute;
+  top:-40px;
+  font-size:22px;
+  animation:fall linear infinite;
+  opacity:.85;
+}
+@keyframes fall{
+  from{transform:translateY(-10vh)}
+  to{transform:translateY(110vh)}
+}
+
+/* TEXTO REVELACION */
+.reveal{
+  max-width:700px;
+  font-size:20px;
+  line-height:1.7;
+  opacity:0;
+  transform:translateY(25px);
+  animation:revealText 5s forwards;
+}
+@keyframes revealText{
+  to{opacity:1;transform:translateY(0)}
+}
+
 </style>
 </head>
 
@@ -184,7 +218,6 @@ onclick="go('inicio','question')">
 <!-- QUIZ -->
 <div id="quiz" class="screen">
 <h2 id="quizTitle"></h2>
-
 <div class="quiz">
 <img src="imagenes/foto1.jpg" onclick="verificar(1)">
 <img src="imagenes/foto2.jpg" onclick="verificar(2)">
@@ -202,11 +235,45 @@ onclick="go('inicio','question')">
 <div id="final" class="screen">
 <h1>💖 CONTRATO CERRADO 💖</h1>
 <h2 id="finalName"></h2>
+
+<img src="imagenes/vaca.png"
+class="vacaFinal"
+onclick="go('final','dios'); crearLuces()">
+
+<p style="margin-top:15px;font-size:20px">
+psss psss ven 👀
+</p>
+</div>
+
+<!-- MENSAJE DIOS -->
+<div id="dios" class="screen">
+<div id="lights"></div>
+
+<p class="reveal">
+Dios está presente en todo momento.<br><br>
+Aunque las cosas no estén bien,
+Él nunca te abandona.<br><br>
+Está contigo en cada decisión,
+en cada paso y en cada dificultad.<br><br>
+
+Siempre voy a estar contigo,
+nunca vas a estar sola porque me tienes a mí.
+Tú estás conmigo y yo contigo.<br><br>
+
+Si podemos con la distancia,
+podemos con todo.
+Solo confía que todo estará bien,
+mi Dios nos tiene muchas cosas aún por delante.<br><br>
+
+Así que vamos a seguir para adelante…
+te amo preciosa ❤️✨
+</p>
+
 </div>
 
 <script>
 
-/* CAMBIAR PANTALLAS */
+/* CAMBIO PANTALLAS */
 function go(a,b){
  document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));
  setTimeout(()=>document.getElementById(b).classList.add('active'),200);
@@ -232,17 +299,15 @@ setInterval(()=>{
  }
 },3000);
 
-/* TEXTO MAQUINA ESCRIBIR */
+/* TEXTO QUIZ */
 const textoQuiz="¿Cuál es mi foto favorita? 💖";
 let t=0;
-
 function iniciarTextoQuiz(){
  const el=document.getElementById("quizTitle");
  el.innerHTML="";
  t=0;
  escribir();
 }
-
 function escribir(){
  if(t<textoQuiz.length){
    document.getElementById("quizTitle").innerHTML+=textoQuiz.charAt(t);
@@ -263,7 +328,7 @@ function verificar(n){
  }
 }
 
-/* PARTICULAS CORAZONES */
+/* PARTICULAS */
 const p=document.getElementById("particles");
 for(let i=0;i<25;i++){
  const d=document.createElement("div");
@@ -272,6 +337,20 @@ for(let i=0;i<25;i++){
  d.style.left=Math.random()*100+"%";
  d.style.animationDuration=8+Math.random()*8+"s";
  p.appendChild(d);
+}
+
+/* LUCES */
+function crearLuces(){
+ const cont=document.getElementById("lights");
+ cont.innerHTML="";
+ for(let i=0;i<35;i++){
+   const l=document.createElement("div");
+   l.className="light";
+   l.innerHTML="✨";
+   l.style.left=Math.random()*100+"%";
+   l.style.animationDuration=4+Math.random()*5+"s";
+   cont.appendChild(l);
+ }
 }
 </script>
 
